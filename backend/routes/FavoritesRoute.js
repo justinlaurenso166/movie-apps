@@ -16,6 +16,20 @@ router.post("/user", async(req, res) => {
     }
 })
 
+router.get("/user/:id", async(req, res) => {
+    try {
+        let find_favorite_by_id = await Favorite.getFavoriteById(req.params.id);
+        if (find_favorite_by_id.length > 0) {
+            res.status(200)
+            res.json(find_favorite_by_id)
+        } else {
+            res.json([])
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.post("/add", async(req, res) => {
     try {
         console.log(req.body)

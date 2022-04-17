@@ -31,7 +31,7 @@ const add_rating = reactive({
 
 const add_favorite = reactive({
     is_favorite: false,
-    user_id: store.state.user_data.user_id,
+    user_id: store.state.user_data === null?  "" : store.state.user_data.user_id,
     movie_id: movie_id,
 })
 
@@ -45,6 +45,11 @@ const register_data = reactive({
 const login_data = reactive({
     username: "",
     password: "",
+})
+
+const error = reactive({
+    show: false,
+    msg: "",
 })
 
 const getMovieByid = async()=>{
@@ -182,8 +187,14 @@ const userLogin = async()=>{
                 },0)
             }
         })
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        if(err.response){
+            error.show = true;
+            error.msg = err.response.data;
+            setTimeout(()=>{
+                error.show = false;
+            }, 3000)
+        }
     }
 }
 
@@ -302,6 +313,10 @@ onMounted(async()=>{
                         <input required type="password" class="w-full border-2 border-slate-500 rounded-lg focus:outline-none px-3 py-2 mt-2" placeholder="Password" v-model="login_data.password">
 
                         <p class="text-center mt-5">Don't have an account ? <span class="cursor-pointer underline font-bold" @click="register = true; login = false;">Register Now !</span></p>
+
+                        <div v-if="error.show">
+                            <p class="text-red-500 font-bold text-center mt-5">{{error.msg}}</p>
+                        </div>
                     </div>
                     <div class="flex justify-between gap-5 mt-10">
                         <button type="button" class="bg-red-500 text-white w-full text-center text-lg px-2 py-1 rounded-md hover:cursor-pointer" @click="showLoginBox = false; add_rating.rating = 0; clearForm()">Cancel</button>

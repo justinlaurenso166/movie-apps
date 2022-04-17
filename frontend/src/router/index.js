@@ -3,9 +3,11 @@ import LoginAdmin from "../views/admin/Login.vue"
 import HomeAdmin from "../views/admin/Home.vue"
 import AddMovies from "../views/admin/AddMovies.vue"
 import EditMovies from "../views/admin/EditMovies.vue"
+import DetailMovieAdmin from "../views/admin/DetailMovie.vue"
 
 import HomeUser from "../views/users/Home.vue"
 import DetailMovie from "../views/users/DetailMovie.vue"
+import FavoriteList from "../views/users/FavoriteList.vue"
 import store from "../store/store";
 
 const routes = [
@@ -16,9 +18,11 @@ const routes = [
     { path: '/dashboard', name: "Home", component: HomeAdmin, meta: { requireAccess: true } },
     { path: '/add', name: "AddMovies", component: AddMovies, meta: { requireAccess: true } },
     { path: '/edit/:id', name: "EditMovies", component: EditMovies, meta: { requireAccess: true } },
+    { path: '/movie/admin/:id', name: "DetailMovieAdmin", component: DetailMovieAdmin, meta: { requireAccess: true } },
     //user
     { path: '/home', name: "Mainpage", component: HomeUser, meta: { requireAccess: false } },
     { path: '/movie/:id', name: "DetailMovie", component: DetailMovie, meta: { requireAccess: false } },
+    { path: '/favorite', name: "FavoriteList", component: FavoriteList, meta: { requireAccess: false } },
 ]
 
 const router = createRouter({

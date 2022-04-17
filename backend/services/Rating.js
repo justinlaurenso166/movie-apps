@@ -23,8 +23,16 @@ const updateRating = async(data_rating) => {
     return check
 }
 
+const getByMovieId = async(movie_id) => {
+    const rows = await db.query(`SELECT * FROM ratings WHERE movie_id='${movie_id}'`)
+    const check = helper.emptyOrRows(rows)
+
+    return check;
+}
+
 module.exports = {
     checkRating,
     updateRating,
     insertRating,
+    getByMovieId
 }

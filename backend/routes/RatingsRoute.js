@@ -41,4 +41,18 @@ router.post("/rate", async(req, res) => {
     }
 })
 
+router.get("/movie/:id", async(req, res) => {
+    try {
+        let find_by_movieid = await Ratings.getByMovieId(req.params.id);
+        if (find_by_movieid.length > 0) {
+            res.status(200)
+            res.json(find_by_movieid)
+        } else {
+            res.json([])
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports = router

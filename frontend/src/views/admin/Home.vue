@@ -85,7 +85,9 @@ onMounted(async()=>{
                             <img :src="`/images/`+movie.image" class="w-32 h-42 m-auto">
                         </td>
                         <td class="border-2 p-6 font-bold">
-                            {{movie.name}}
+                            <span class="hover:underline hover:cursor-pointer" @click="$router.push({name: 'DetailMovieAdmin', params:{id: movie.id}})">
+                                {{movie.name}}
+                            </span>
                         </td>
                         <td class="border-2 py-2 px-4 text-justify">
                             <span

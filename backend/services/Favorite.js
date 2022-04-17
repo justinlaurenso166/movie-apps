@@ -23,8 +23,16 @@ const removeFavorite = async(data_rating) => {
     return check
 }
 
+const getFavoriteById = async(user_id) => {
+    const rows = await db.query(`SELECT list_movies.*, favorites.* FROM favorites INNER JOIN list_movies ON favorites.movie_id = list_movies.id`)
+    const check = helper.emptyOrRows(rows)
+
+    return check;
+}
+
 module.exports = {
     checkFavorite,
     removeFavorite,
     addFavorite,
+    getFavoriteById
 }
