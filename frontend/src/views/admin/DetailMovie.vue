@@ -53,7 +53,7 @@ const getRatingById = async()=>{
                     res.data.forEach((e)=>{
                         sum_rating = sum_rating += e.rating
                     })
-                    total_rating.value = sum_rating / res.data.length;
+                    total_rating.value = Math.ceil((sum_rating / res.data.length) * 10) / 10;
                 }
             }
             console.log(total_rating.value)

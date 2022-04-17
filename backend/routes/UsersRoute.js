@@ -2,10 +2,6 @@ const express = require("express")
 const router = express.Router()
 const Users = require("../services/Users")
 
-router.get("/", (req, res) => {
-    res.send("WELCOME")
-})
-
 router.get("/all_user", async(req, res) => {
     try {
         res.json(await Users.getUser())
