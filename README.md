@@ -1,5 +1,7 @@
 # movie-apps
 
+Made by using Vue Vite, Tailwind CSS, Express, and MySQL
+
 # How to run 
 
 Import the database from database folder
