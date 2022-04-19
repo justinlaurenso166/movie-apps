@@ -4,7 +4,7 @@ const cors = require("cors")
 const multer = require('multer')
 const path = require('path')
 
-const port = 4000;
+const port = 8080;
 
 const Movies = require("./services/Movies")
 
@@ -39,6 +39,10 @@ var upload = multer({
 }).single('image');
 
 module.exports = upload
+
+// app.use("/", (req, res) => {
+//     res.json({ message: "Halo" })
+// })
 
 app.use('/user', UsersRoute);
 app.use('/movies', MoviesRoute);
